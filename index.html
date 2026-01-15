@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チラシ配布料金シミュレーション | 関西ぱど</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>配布料金シミュレーション</h1>
+            <p>配布エリア、サイズ、部数を選択して概算見積もりを確認できます。</p>
+        </header>
+
+        <main class="calculator-card">
+            <form id="calculatorForm">
+                <!-- Area Selection -->
+                <div class="form-group">
+                    <label for="area">配布エリア</label>
+                    <select id="area" name="area" required>
+                        <option value="" disabled selected>エリアを選択してください</option>
+                        <option value="osaka">大阪府下</option>
+                        <option value="nara">奈良</option>
+                    </select>
+                </div>
+
+                <!-- Item Type Selection -->
+                <div class="form-group">
+                    <label for="itemType">種別</label>
+                    <div class="radio-group" id="itemTypeGroup">
+                        <label class="radio-label">
+                            <input type="radio" name="itemType" value="flyer" checked>
+                            <span class="radio-custom">チラシ</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="itemType" value="booklet">
+                            <span class="radio-custom">冊子・封筒物</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Flyer Specific Options -->
+                <div id="flyerOptions" class="options-section">
+                    <div class="form-group">
+                        <label for="paperType">紙の種類</label>
+                        <select id="paperType" name="paperType">
+                            <option value="standard">普通紙</option>
+                            <option value="thick">厚紙</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="flyerSize">サイズ</label>
+                        <select id="flyerSize" name="flyerSize">
+                            <!-- Options will be populated by JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Booklet Specific Options -->
+                <div id="bookletOptions" class="options-section hidden">
+                    <div class="form-group">
+                        <label for="weight">重量</label>
+                        <select id="weight" name="weight">
+                            <option value="20">20g以下</option>
+                            <option value="25">20g超 〜 25g以下</option>
+                            <option value="50">25g超 〜 50g以下</option>
+                            <option value="75">50g超 〜 75g以下</option>
+                            <option value="100">75g超 〜 100g以下</option>
+                            <option value="125">100g超 〜 125g以下</option>
+                            <option value="150">125g超 〜 150g以下</option>
+                            <option value="175">150g超 〜 175g以下</option>
+                            <option value="200">175g超 〜 200g以下</option>
+                        </select>
+                        <p class="input-note">※大きさはA4以下（冊子A4迄・封書）</p>
+                    </div>
+                </div>
+
+                <!-- Quantity Input -->
+                <div class="form-group">
+                    <label for="quantity">配布部数 (枚)</label>
+                    <input type="number" id="quantity" name="quantity" min="0" step="1000" placeholder="例: 10000">
+                    <p id="minQuantityMsg" class="error-message hidden">※最低10,000枚以上でお願いします。</p>
+                </div>
+
+                <!-- Result Display -->
+                <div class="result-section">
+                    <div class="result-row">
+                        <span>単価 (円/部)</span>
+                        <span id="unitPrice" class="price-value">-</span>
+                    </div>
+                    <div class="total-row">
+                        <span>概算費用 (税別)</span>
+                        <span id="totalPrice" class="total-value">-</span>
+                    </div>
+                </div>
+            </form>
+
+            <div class="notes">
+                <p>※2枚以上のチラシがホッチキスで綴じてあるものは、各々のチラシ配布料金の和となります。</p>
+                <p>※受注後、サイズ、重量などで差異が判明した場合は、差額を請求させていただきます。</p>
+                <p>※その他規格外の物は別途見積となります。</p>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
