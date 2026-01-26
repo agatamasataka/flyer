@@ -14,15 +14,29 @@
 <body>
     <div class="container">
         <header class="header">
+            <div class="logo-container">
+                <img src="logo.png" alt="Kansai Pado" class="logo-img">
+            </div>
             <h1>配布料金シミュレーション</h1>
-            <p>配布エリア、サイズ、部数を選択して概算見積もりを確認できます。</p>
+            <p>エリアをクリックして選択し、サイズ・部数を入力してください。</p>
         </header>
 
         <main class="calculator-card">
+            <!-- Map Selector -->
+            <div class="map-selector-container">
+                <span class="map-label">エリアを選択してください（地図をクリック）</span>
+                <div class="map-wrapper">
+                    <div class="map-overlay-group">
+                        <div id="zone-osaka" class="map-zone" data-target="osaka">大阪府下</div>
+                        <div id="zone-nara" class="map-zone" data-target="nara">奈良</div>
+                    </div>
+                </div>
+            </div>
+
             <form id="calculatorForm">
-                <!-- Area Selection -->
+                <!-- Area Selection (Hidden or synced) -->
                 <div class="form-group">
-                    <label for="area">配布エリア</label>
+                    <label for="area">エリア (一覧から選ぶ)</label>
                     <select id="area" name="area" required>
                         <option value="" disabled selected>エリアを選択してください</option>
                         <option value="osaka">大阪府下</option>

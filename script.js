@@ -193,8 +193,33 @@ function calculate() {
     }
 }
 
+// Map Interaction
+const mapZones = document.querySelectorAll('.map-zone');
+
+function updateMapState(selectedArea) {
+    mapZones.forEach(zone => {
+        if (zone.dataset.target === selectedArea) {
+            zone.classList.add('active');
+        } else {
+            zone.classList.remove('active');
+        }
+    });
+}
+
+mapZones.forEach(zone => {
+    zone.addEventListener('click', () => {
+        const target = zone.dataset.target;
+        areaSelect.value = target;
+        // Trigger change event manually to update options
+        areaSelect.dispatchEvent(new Event('change'));
+    });
+});
+
 // Event Listeners
-areaSelect.addEventListener('change', updateOptions);
+areaSelect.addEventListener('change', () => {
+    updateMapState(areaSelect.value);
+    updateOptions();
+});
 itemTypeRadios.forEach(r => r.addEventListener('change', updateOptions));
 paperTypeSelect.addEventListener('change', updateOptions);
 flyerSizeSelect.addEventListener('change', calculate);
@@ -202,4 +227,5 @@ weightSelect.addEventListener('change', calculate);
 quantityInput.addEventListener('input', calculate);
 
 // Initial Call
+updateMapState(areaSelect.value);
 updateOptions();
